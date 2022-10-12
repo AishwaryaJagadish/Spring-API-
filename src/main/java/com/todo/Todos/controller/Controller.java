@@ -31,7 +31,7 @@ public class Controller {
 			}
 		catch(Exception e)
 		{
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST); //wohooooooooooooo git
 		}	
 	}
 	
@@ -80,7 +80,7 @@ public class Controller {
 			}
 			else
 			{
-				return new ResponseEntity<>("todo not found in the database",HttpStatus.NOT_FOUND);
+				return new ResponseEntity<>("Todo not found in the database",HttpStatus.NOT_FOUND);
 			}
 			
 		}
