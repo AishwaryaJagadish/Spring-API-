@@ -17,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.todo.Todos.model.Todo;
 import com.todo.Todos.repository.Repo;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @RestController
 public class Controller {
+	
+	private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 	
 	@Autowired
 	private Repo repo;
@@ -37,8 +42,11 @@ public class Controller {
 	
 	@GetMapping("/todos")
 	public ResponseEntity<?> getTodo(){
+		logger.info("Entered getmapping");
 		try {
+			
 			List<Todo> gtodo = repo.findAll();
+			logger.info("Got object {}", gtodo);
 			return new ResponseEntity<List<Todo>>(gtodo,HttpStatus.OK);
 		}
 		catch(Exception e)
@@ -91,9 +99,12 @@ public class Controller {
 	@GetMapping("/todos/{id}")
 	public ResponseEntity<?> getSingleUser(@PathVariable String id)
 	{
+		
+		logger.info("Entered getmapping 2");
 		try {
 		Optional<Todo> todooptional = repo.findById(id);
 		if(todooptional.isPresent()) {
+			logger.info("Got object found {}", todooptional.get());
 			return new ResponseEntity<Todo>(todooptional.get(),HttpStatus.OK);
 		}
 		else
